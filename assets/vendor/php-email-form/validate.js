@@ -1,4 +1,4 @@
-/**
+ <div class="error-message"></div> remove respective code for this in /**
 * PHP Email Form Validation - v3.7
 * URL: https://bootstrapmade.com/php-email-form/
 * Author: BootstrapMade.com
@@ -18,12 +18,12 @@
       let recaptcha = thisForm.getAttribute('data-recaptcha-site-key');
       
       if( ! action ) {
-        // displayError(thisForm, 'The form action property is not set!');
+        displayError(thisForm, 'The form action property is not set!');
         return;
       }
       thisForm.querySelector('.loading').classList.add('d-block');
-      // thisForm.querySelector('.error-message').classList.remove('d-block');
       thisForm.querySelector('.sent-message').classList.remove('d-block');
+	    thisForm.querySelector('.error-message').classList.remove('d-block');
 
       let formData = new FormData( thisForm );
 
@@ -37,11 +37,11 @@
                 php_email_form_submit(thisForm, action, formData);
               })
             } catch(error) {
-              // displayError(thisForm, error);
+              displayError(thisForm, error);
             }
           });
         } else {
-          // displayError(thisForm, 'The reCaptcha javascript API url is not loaded!')
+          displayError(thisForm, 'The reCaptcha javascript API url is not loaded!')
         }
       } else {
         php_email_form_submit(thisForm, action, formData);
@@ -72,14 +72,15 @@
       }
     })
     .catch((error) => {
-      // displayError(thisForm, error);
+      displayError(thisForm, error);
     });
   }
 
-  // function displayError(thisForm, error) {
-  //   thisForm.querySelector('.loading').classList.remove('d-block');
-  //   thisForm.querySelector('.error-message').innerHTML = error;
-  //   thisForm.querySelector('.error-message').classList.add('d-block');
-  // }
+  function displayError(thisForm, error) {
+    thisForm.querySelector('.loading').classList.remove('d-block');
+    thisForm.querySelector('.error-message').classList.add('d-block');
+	  thisForm.querySelector('.error-message').innerHTML = error;
+  }
 
 })();
+
